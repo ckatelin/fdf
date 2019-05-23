@@ -3,28 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ckatelin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ckatelin <ckatelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 17:00:52 by ckatelin          #+#    #+#             */
-/*   Updated: 2019/05/21 17:26:30 by ckatelin         ###   ########.fr       */
+/*   Updated: 2019/05/23 20:33:16 by ckatelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "mlx.h"
-    #include <sys/types.h>
-    #include <sys/uio.h>
-    #include <unistd.h>
-     #include <fcntl.h>
+#include "fdf.h"
 
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-int	deal_key(int key, void *param)
+int	deal_key(int key, t_fun *f)
 {
-	ft_putchar('X');
+	if (key == 12)
+	{
+		mlx_pixel_put(f->mlx_ptr, f->win_ptr, f->y++, f->x, 0xFFFFFF);
+	}
 	return (0);
 }
 
@@ -36,21 +34,48 @@ int			main(void)
 	char buf[1000];
 	int i;
 	int ret;
+	int x;
+	int y;
+	t_fun *f;
 
+	f = (t_fun*)malloc(sizeof(t_fun));
+	f->x = 255;
+	printf("OK1\n");
+	f->y = 255;
+	printf("OK1\n");
+	x = 10;
+	y = 10;
 	i = 0;
 	fd = open("text.txt", O_RDONLY);
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
-	while ((ret = read(fd, buf, 10)) > 0)
+	printf("fd = %d\n", fd);
+//	f->mlx_ptr = malloc(sizeof(void *) * 3);
+	f->mlx_ptr = mlx_init();
+	printf("OK1\n");
+//	f->win_ptr = malloc(sizeof(void *) * 1000);
+	f->win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
+	printf("OK1\n");
+	while ((ret = read(fd, buf, 38)) > 0)
 	{
+		printf("ret = %d\n", ret);
+		y = 10;
 		i = 0;
 		buf[ret] = '\0';
 		while (buf[i])
 		{
-			if (buf[i++] == 1)
-				mlx_pixel_put(mlx_ptr, win_ptr, i - 1, i - 1, 0x00FFFF);
+			if (buf[i++] == '1')
+			{
+				mlx_pixel_put(f->mlx_ptr, f->win_ptr, y, x, 0xFFFFFF);
+			}
+			y++;
 		}
+		x++;
 	}
-	mlx_key_hook(win_ptr, deal_key, (void *)0);
-	mlx_loop(mlx_ptr);
+	printf("end\n");
+
+//	mlx_pixel_put(mlx_ptr, win_ptr, 100, 255, 0x00FFFF);
+//	mlx_pixel_put(mlx_ptr, win_ptr, 100, 200, 0x00FFFF);
+	mlx_key_hook(f->win_ptr, deal_key, &f);
+	mlx_loop(f->mlx_ptr);
+//	printf("end\n");
+	return (0);
 }
