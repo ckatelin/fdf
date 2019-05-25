@@ -2,7 +2,7 @@
 # define FDF_H
 
 #include <unistd.h>
-#include "mlx.h"
+#include "./minilibx_macos/mlx.h"
 #include <sys/types.h>
 #include <sys/uio.h>
 #include <fcntl.h>
