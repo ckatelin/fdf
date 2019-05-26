@@ -6,7 +6,7 @@
 /*   By: ckatelin <ckatelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 17:00:52 by ckatelin          #+#    #+#             */
-/*   Updated: 2019/05/25 15:14:54 by ckatelin         ###   ########.fr       */
+/*   Updated: 2019/05/26 15:47:55 by ckatelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,34 @@ int bresen(int x0, int x1, int y0, int y1, t_fun *f)
 	}
 	return (0);
 }
+
+int circle(t_fun *f, int r, int x1, int y1)
+{
+	int x = 0;
+   int y = r;
+   int delta = 1 - 2 * r;
+   int error = 0;
+   while (y >= 0)
+	{
+       mlx_pixel_put(f->mlx_ptr, f->win_ptr, x1 + x, y1 + y, 0xFFFFFF);
+       mlx_pixel_put(f->mlx_ptr, f->win_ptr, x1 + x, y1 - y, 0xFFFFFF);
+       mlx_pixel_put(f->mlx_ptr, f->win_ptr, x1 - x, y1 + y, 0xFFFFFF);
+       mlx_pixel_put(f->mlx_ptr, f->win_ptr, x1 - x, y1 - y, 0xFFFFFF);
+       error = 2 * (delta + y) - 1;
+       if ((delta < 0) && (error <= 0))
+	   {
+           delta += 2 * ++x + 1;
+           continue;
+	   }
+       if ((delta > 0) && (error > 0))
+	   {
+           delta -= 2 * --y + 1;
+           continue;
+	   }
+       delta += 2 * (++x - y--);
+	}
+	return (0);
+}
 int			main(void)
 {
 	void	*mlx_ptr;
@@ -94,10 +122,11 @@ int			main(void)
 	t_fun *f;
 	void *img;
 	int chto;
+	int kto;
 
 	f = (t_fun*)malloc(sizeof(t_fun));
-	f->x = 255;
-	f->y = 255;
+	f->x = 250;
+	f->y = 250;
 	x = 10;
 	y = 10;
 	i = 0;
@@ -120,12 +149,15 @@ int			main(void)
 		x++;
 	}
 	*/
-	chto = bresen(250, 250, 280, 300, f);
+//	kto = mlx_loop_hook(f->mlx_ptr, deal_key, f);	
+//	chto = bresen(250, 450, 300, 350, f);
 	//img = mlx_new_image(f->mlx_ptr, 50, 50);
 	//mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, img, 300, 300);
+	circle(f, 50, 250, 250);
 	mlx_key_hook(f->win_ptr, deal_key, f);
 	mlx_hook(f->win_ptr, 2, 10, deal_key, f);
-	/*mlx_hook(f->win_ptr, 4, 10, mouse_press, f);
+	mlx_hook(f->win_ptr, 17, 100, mouse_press, f);
+	/*
 	mlx_new_image(f->mlx_ptr, 50, 50);
 //	mlx_key_hook(f->win_ptr, deal_key, f);
 */
