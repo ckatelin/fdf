@@ -6,10 +6,26 @@
 #    By: ckatelin <ckatelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/21 17:14:17 by ckatelin          #+#    #+#              #
-#    Updated: 2019/05/26 15:43:10 by ckatelin         ###   ########.fr        #
+#    Updated: 2019/05/27 17:37:14 by ckatelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-all:
-	gcc -g -I fdf.h main.c -L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit
+LIB = ./srcs/libft/
+NAME = fdf
+GNL = ./srcs/gnl/get_next_line.c
 
+
+
+all: $(NAME)
+
+$(NAME):
+	make -C $(LIB)
+	gcc -g -I fdf.h find_z.c $(GNL) -L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit -L $(LIB) -lft 
+
+clean:
+	make clean -C $(LIB)
+
+fclean: clean
+	make fclean -C $(LIB)
+
+re: fclean all
