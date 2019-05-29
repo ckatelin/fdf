@@ -6,11 +6,13 @@
 /*   By: ckatelin <ckatelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 17:20:08 by ckatelin          #+#    #+#             */
-/*   Updated: 2019/05/27 18:50:42 by ckatelin         ###   ########.fr       */
+/*   Updated: 2019/05/29 09:50:25 by ckatelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+
 
 int	deal_key(int key, t_fun *f)
 {
@@ -38,6 +40,7 @@ int	deal_key(int key, t_fun *f)
 
 	return (0);
 }
+
 
 int bresen(int x0, int x1, int y0, int y1, t_fun *f)
 {
@@ -98,6 +101,7 @@ int main(void)
     x0 = 10;
     y0 = 10;
     fd = open("text.txt", O_RDONLY);
+    printf("fd = %d", fd);
     while (get_next_line(fd, &line) > 0)
     {
         new = line;
@@ -106,9 +110,9 @@ int main(void)
                 printf("%d", k = ft_atoi(new++));
                 if (k == 0)
                 {
-                    bresen(x0, f->x, y0, f->y, f);
-                    if (check)
-                        try(x0, f->x + 10, y0, f->y - 10, f);
+                    put_line(x0, y0, f->x, f->y, f);
+                    //if (check)
+                    //    try(x0, f->x + 10, y0, f->y - 10, f);
                 }
                 x0 += 10;
                 f->x += 10;

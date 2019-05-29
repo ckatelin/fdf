@@ -18,6 +18,9 @@ typedef struct    s_fun
     int     y;
 }                t_fun;
 
+int   ft_put_line(int x0, int y0, int x1, int y1, t_fun *f);
+int ft_linehigh(int x0, int y0, int x1, int y1, t_fun *f);
+int ft_linelow(int x0, int y0, int x1, int y1, t_fun *f);
 //GNL
 # include <sys/types.h>
 # include <sys/uio.h>
