@@ -27,7 +27,7 @@ int	deal_key(int key, t_fun *f)
 	return (0);
 }
 
-int mouse_release(int button, int x, int y, void *param)
+int mouse_release(int button, int x, int y, t_put *k)
 {
     printf("x = %d\ny = %d\n", x, y);
     return (0);
@@ -42,9 +42,11 @@ int main(void)
     int x0;
     int y0;
     int k;
+    t_put *m;
 
     printf("OK");
     f = (t_fun*)malloc(sizeof(t_fun));
+    m = (t_put*)malloc(sizeof(t_put));
     f->mlx_ptr = mlx_init();
 	f->win_ptr = mlx_new_window(f->mlx_ptr, 500, 500, "mlx 42");
     fd = open("text.txt", O_RDONLY);
@@ -78,6 +80,8 @@ int main(void)
         x0 = 10;
     }
     ft_put_line(250, 250, 220, 300, f);
+    printf("OK");
+ //   draw_line(f, m);
     mlx_hook(f->win_ptr, 5, 10, mouse_release, f);
     mlx_hook(f->win_ptr, 2, 10, deal_key, f);
     mlx_loop(f->mlx_ptr);

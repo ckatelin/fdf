@@ -16,11 +16,27 @@ typedef struct    s_fun
     void    *win_ptr;
     int     x;
     int     y;
+    int x1;
+    int y1;
+    int x2;
+    int y2;
 }                t_fun;
+
+typedef struct  s_put
+{
+    int x1;
+    int y1;
+    int x2;
+    int y2;
+}               t_put;
 
 int   ft_put_line(int x0, int y0, int x1, int y1, t_fun *f);
 int ft_linehigh(int x0, int y0, int x1, int y1, t_fun *f);
 int ft_linelow(int x0, int y0, int x1, int y1, t_fun *f);
+int draw_line(t_fun *k);
+//int mouse_release1(int button, int x, int y, t_fun *f);
+int mouse_release(int button, int x, int y, t_fun  *k);
+int	deal_key(int key, t_fun *f);
 //GNL
 # include <sys/types.h>
 # include <sys/uio.h>
