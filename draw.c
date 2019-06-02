@@ -23,34 +23,28 @@ int mouse_release(int button, int x, int y, t_fun *k)
         k->y2 = y;
         draw_line(k);
 	}
-    else
+/*    else
     {
         exit (0);
     }
-    
+*/    
 	return (0);
 }
 
 int draw_line(t_fun *k)
 {
-    mlx_hook(k->win_ptr, 5, 10, mouse_release, k);
-    
-    mlx_hook(k->win_ptr, 5, 10, mouse_release, k);
+//	mlx_hook(k->win_ptr, 5, 10, mouse_release, k);    
+//    mlx_hook(k->win_ptr, 5, 10, mouse_release, k);
     ft_put_line(k->x1, k->y1, k->x2, k->y2, k);
+//    mlx_loop(k->mlx_ptr);
     return (0);
 }
 
-/*
-int main(void)
-{
-    t_fun *k;
 
-    k = (t_fun *)malloc(sizeof(t_fun));
-    k->mlx_ptr = mlx_init();
-    k->win_ptr = mlx_new_window(k->mlx_ptr, 500, 500, "mlx 42");
-    mlx_hook(k->win_ptr, 5, 10, mouse_release, k);
-    mlx_hook(k->win_ptr, 5, 10, mouse_release, k);
-    mlx_hook(k->win_ptr, 2, 10, deal_key, k);
-    mlx_loop(k->mlx_ptr);
+int ft_go(t_fun *k)
+{
+	mlx_hook(k->win_ptr, 4, 10, mouse_release, k);
+	mlx_hook(k->win_ptr, 2, 10, deal_key, k);
+	mlx_loop(k->mlx_ptr);
+    return (0);
 }
-*/

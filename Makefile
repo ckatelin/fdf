@@ -6,7 +6,7 @@
 #    By: ckatelin <ckatelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/21 17:14:17 by ckatelin          #+#    #+#              #
-#    Updated: 2019/05/30 13:59:08 by ckatelin         ###   ########.fr        #
+#    Updated: 2019/06/02 17:24:06 by ckatelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIB)
-	gcc -g -I fdf.h line.c draw.c new.c $(GNL) -L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit -L $(LIB) -lft 
+	gcc -g -I fdf.h line.c draw.c new.c draw_map.c $(GNL) -L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit -L $(LIB) -lft 
 
 clean:
 	make clean -C $(LIB)

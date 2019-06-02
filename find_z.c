@@ -6,7 +6,7 @@
 /*   By: ckatelin <ckatelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 17:20:08 by ckatelin          #+#    #+#             */
-/*   Updated: 2019/05/29 09:50:25 by ckatelin         ###   ########.fr       */
+/*   Updated: 2019/06/02 17:20:15 by ckatelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int main(void)
                 printf("%d", k = ft_atoi(new++));
                 if (k == 0)
                 {
-                    put_line(x0, y0, f->x, f->y, f);
+                    ft_put_line(x0, y0, f->x, f->y, f);
                     //if (check)
                     //    try(x0, f->x + 10, y0, f->y - 10, f);
                 }
