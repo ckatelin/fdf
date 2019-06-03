@@ -39,6 +39,8 @@ int mouse_release(int button, int x, int y, t_fun  *k);
 int	deal_key(int key, t_fun *f);
 int ft_go(t_fun *k);
 int draw_map(int fd, char *line, t_fun *f);
+void iso(int *x, int *y, int z);
+
 //GNL
 # include <sys/types.h>
 # include <sys/uio.h>

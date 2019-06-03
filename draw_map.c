@@ -6,6 +6,8 @@ int draw_map(int fd, char *line, t_fun *f)
     int x0;
     int y0;
     int k;
+    int x1;
+    int y1;
 
     f->x = 20;
     f->y = 10;
@@ -18,12 +20,15 @@ int draw_map(int fd, char *line, t_fun *f)
         {
                 if ((k = ft_atoi(new++)) == 0)
                 {
+//                    iso(&f->x, &f->y, 0);
                     ft_put_line(x0, y0, f->x, f->y, f);
                 }
                 else
                 {
+                    iso(&f->x, &f->y, k);
                     ft_put_line(x0, y0, f->x, f->y + 10, f);
                 }
+                
                 x0 += 10;
                 f->x += 10;
                 while (k > 9)
