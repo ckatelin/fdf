@@ -20,19 +20,25 @@ typedef struct    s_fun
     int y1;
     int x2;
     int y2;
+    int start;
+    int end;
+    int current;
 }                t_fun;
 
 typedef struct  s_put
 {
-    int x1;
-    int y1;
-    int x2;
-    int y2;
+    int x;
+    int y;
+    int color;
 }               t_put;
 
-int   ft_put_line(int x0, int y0, int x1, int y1, t_fun *f);
-int ft_linehigh(int x0, int y0, int x1, int y1, t_fun *f);
-int ft_linelow(int x0, int y0, int x1, int y1, t_fun *f);
+int get_color(t_put current, t_put start, t_put end, t_put delta);
+int get_light(int start, int end, double percentage);
+double percent(int start, int end, int current);
+
+int   ft_put_line(int x0, int y0, int x1, int y1, t_fun *f, int color);
+int ft_linehigh(int x0, int y0, int x1, int y1, t_fun *f, int color);
+int ft_linelow(int x0, int y0, int x1, int y1, t_fun *f, int color);
 int draw_line(t_fun *k);
 //int mouse_release1(int button, int x, int y, t_fun *f);
 int mouse_release(int button, int x, int y, t_fun  *k);

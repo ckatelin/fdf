@@ -35,7 +35,7 @@ int draw_line(t_fun *k)
 {
 //	mlx_hook(k->win_ptr, 5, 10, mouse_release, k);    
 //    mlx_hook(k->win_ptr, 5, 10, mouse_release, k);
-    ft_put_line(k->x1, k->y1, k->x2, k->y2, k);
+    ft_put_line(k->x1, k->y1, k->x2, k->y2, k, 0xFF00FF);
 //    mlx_loop(k->mlx_ptr);
     return (0);
 }

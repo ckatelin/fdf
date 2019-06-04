@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-int ft_linelow(int x0, int y0, int x1, int y1, t_fun *f)
+int ft_linelow(int x0, int y0, int x1, int y1, t_fun *f, int color)
 {
     int dx = x1 - x0;
     int dy = y1 - y0;
@@ -20,7 +20,7 @@ int ft_linelow(int x0, int y0, int x1, int y1, t_fun *f)
     
     while (x < x1)
     {
-        mlx_pixel_put(f->mlx_ptr, f->win_ptr, x, y, 0xFF00FF);
+        mlx_pixel_put(f->mlx_ptr, f->win_ptr, x, y, color);
         if (d > 0)
         {
             y = y + yi;
@@ -32,7 +32,7 @@ int ft_linelow(int x0, int y0, int x1, int y1, t_fun *f)
     return (0);
 }
 
-int ft_linehigh(int x0, int y0, int x1, int y1, t_fun *f)
+int ft_linehigh(int x0, int y0, int x1, int y1, t_fun *f, int color)
 {
     int dx = x1 - x0;
     int dy = y1 - y0;
@@ -52,7 +52,7 @@ int ft_linehigh(int x0, int y0, int x1, int y1, t_fun *f)
     
     while (y < y1)
     {
-        mlx_pixel_put(f->mlx_ptr, f->win_ptr, x, y, 0xFF00FF);
+        mlx_pixel_put(f->mlx_ptr, f->win_ptr, x, y, color);
         if (d > 0)
         {
             x = x + xi;
@@ -64,21 +64,21 @@ int ft_linehigh(int x0, int y0, int x1, int y1, t_fun *f)
     return(0);
 }
  
-int   ft_put_line(int x0, int y0, int x1, int y1, t_fun *f)
+int   ft_put_line(int x0, int y0, int x1, int y1, t_fun *f, int color)
  {
   if (abs(y1 - y0) < abs(x1 - x0))
   {
     if (x0 > x1)
-      ft_linelow(x1, y1, x0, y0, f);
+      ft_linelow(x1, y1, x0, y0, f, color);
     else
-      ft_linelow(x0, y0, x1, y1, f);
+      ft_linelow(x0, y0, x1, y1, f, color);
   }
   else
   {
     if (y0 > y1)
-      ft_linehigh(x1, y1, x0, y0, f);
+      ft_linehigh(x1, y1, x0, y0, f, color);
     else
-      ft_linehigh(x0, y0, x1, y1, f);
+      ft_linehigh(x0, y0, x1, y1, f, color);
   }
   return (0);
  }
